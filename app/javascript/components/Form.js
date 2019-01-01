@@ -13,7 +13,7 @@ class Form extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		axios.get(`https://api.github.com/users/${this.state.userName}`)
+		axios.get('/getUserDetails', {params: {userName: this.state.userName}})
 		.then(response=>{this.props.onSubmit(response.data)})
 		.catch(error=>error);
 	}
