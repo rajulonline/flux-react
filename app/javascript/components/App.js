@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import Form from './Form.js';
 import UserList from './UserList.js';
 
+import GetUserDetailsStore from "../stores/GetUserDetailsStore";
+import ServerActions from "../actions/ServerActions.jsx";
+
+import GitRetrieveDetailsActions from "../actions/GitRetrieveDetailsActions.jsx";
+GitRetrieveDetailsActions.getAllUserDetails();
+
 class App extends React.Component {
 
 	state = {
