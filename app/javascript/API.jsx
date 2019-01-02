@@ -1,12 +1,12 @@
-import ServerActions from "./actions/ServerActions.jsx";
+import ServerActions from "actions/ServerActions.jsx";
 import axios from 'axios';
 
 export default {
 	
 	getAllUserDetails(userName) {
-		console.log(2, "you are here at the api");
+		console.log(userName, "At the api jsx")
 		axios.get('/getUserDetails', {params: {userName: userName}})
-		.then(userDetails => ServerActions.receivedUserDetails(userDetails))
+		.then(userDetails => ServerActions.receivedUserDetails(userDetails.data))
 		.catch(error=>error);
 	}
 }

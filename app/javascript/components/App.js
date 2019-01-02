@@ -2,28 +2,44 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import Form from './Form.js';
 import UserList from './UserList.js';
+import GetUserDetailsStore from "../stores/GetUserDetailsStore.jsx";
 
-import GetUserDetailsStore from "../stores/GetUserDetailsStore";
-import ServerActions from "../actions/ServerActions.jsx";
-
-import GitRetrieveDetailsActions from "../actions/GitRetrieveDetailsActions.jsx";
-GitRetrieveDetailsActions.getAllUserDetails();
+let getAppState = () => {  
+  return { userDetails: GetUserDetailsStore.getAll() };
+}
 
 class App extends React.Component {
 
-	state = {
-		userDetails: []
-	}
+  constructor(props) {
+    super(props);
+    this.state = getAppState();
+    this._onChange = this._onChange.bind(this);
+  }
+	
 
-	addUserDetails = (userDetailsFromResponse) => {
-		this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
-	}
+	// addUserDetails = (userDetailsFromResponse) => {
+	// 	this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
+	// }
+
+  componentDidMount() {    
+    GetUserDetailsStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnMount() {
+    GetUserDetailsStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange() {   
+    //console.log("On change called" + Object.keys(GetUserDetailsStore.getAll()));
+    console.log("This is the value for state user details " + Object.keys(getAppState())); 
+    this.setState(getAppState());
+  }
 
   render () {
     return (
       <div>       
-        <Form onSubmit={this.addUserDetails}/>
-        <UserList userDetails={this.state.userDetails}/>
+        <Form />
+        <UserList allDetails= {this.state.userDetails} />
       </div>
     );
   }

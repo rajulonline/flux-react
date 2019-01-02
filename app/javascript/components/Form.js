@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import GitRetrieveDetailsActions from "../actions/GitRetrieveDetailsActions.jsx";
+
 
 class Form extends React.Component {
 	state = {
@@ -16,7 +17,9 @@ class Form extends React.Component {
 		// axios.get('/getUserDetails', {params: {userName: this.state.userName}})
 		// .then(response=>{this.props.onSubmit(response.data)})
 		// .catch(error=>error);
+		GitRetrieveDetailsActions.getAllUserDetails(this.state.userName);
 	}
+	 
 
   render () {
     return (      
