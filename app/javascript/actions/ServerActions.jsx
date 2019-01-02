@@ -1,5 +1,6 @@
 import AppDispatcher from "../dispatcher.jsx";
 import ActionTypes from "../constants.jsx";
+
 export default {
 
 receivedUserDetails(userDetails) {
