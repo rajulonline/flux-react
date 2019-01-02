@@ -3,7 +3,7 @@ import ActionTypes from "../constants.jsx";
 import {EventEmitter} from "events";
 const CHANGE_EVENT = "CHANGE";
 
-var gitUserDetails = [];
+let gitUserDetails = [];
 
 class GitEventEmitter extends EventEmitter {
 	getAll() {

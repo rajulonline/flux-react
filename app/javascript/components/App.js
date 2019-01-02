@@ -10,28 +10,25 @@ let getAppState = () => {
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = getAppState();
-    this._onChange = this._onChange.bind(this);
-  }
-	
-
+  state = getAppState();
+  _onChange = this._onChange.bind(this);
+  
 	// addUserDetails = (userDetailsFromResponse) => {
 	// 	this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
 	// }
 
   componentDidMount() {    
+    console.log("component did mount called ");
     GetUserDetailsStore.addChangeListener(this._onChange);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
+     console.log("component will un mount called ");
     GetUserDetailsStore.removeChangeListener(this._onChange);
   }
 
-  _onChange() {   
-    //console.log("On change called" + Object.keys(GetUserDetailsStore.getAll()));
-    console.log("This is the value for state user details " + Object.keys(getAppState())); 
+  _onChange() {  
+  console.log("On change called");   
     this.setState(getAppState());
   }
 
