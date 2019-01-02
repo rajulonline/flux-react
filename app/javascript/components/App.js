@@ -9,9 +9,12 @@ let getAppState = () => {
 }
 
 class App extends React.Component {
-
-  state = getAppState();
-  _onChange = this._onChange.bind(this);
+  constructor(props){
+    super(props);
+    this.state = getAppState();
+    this._onChange = this._onChange.bind(this);
+  }
+  
   
 	// addUserDetails = (userDetailsFromResponse) => {
 	// 	this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
