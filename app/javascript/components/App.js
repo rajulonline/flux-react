@@ -49,7 +49,7 @@ class App extends React.Component {
         </p>    
       </div>
         <Form />      
-   
+        <UserList allDetails={this.state.userDetails} />
       </div>
     );
   }
