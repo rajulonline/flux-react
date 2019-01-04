@@ -6,7 +6,9 @@ class User extends React.Component {
 	render(){
 		return(
 			<div>
-				<h1>{this.props.login}</h1>
+				<h4>UserName: {this.props.name}</h4>
+				<h4>Total Number of Public Repos: {this.props.public_repos}</h4>
+				<h4>Total Number of Public Gists: {this.props.public_gists}</h4><br/>
 			</div>
 			)
 	}

@@ -4,42 +4,50 @@ import Form from './Form.js';
 import UserList from './UserList.js';
 import GetUserDetailsStore from "../stores/GetUserDetailsStore.jsx";
 
+
 let getAppState = () => {  
   return { userDetails: GetUserDetailsStore.getAll() };
 }
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = getAppState();
-    this._onChange = this._onChange.bind(this);
-  }
+  // constructor(props){
+  //   super(props);
+  state = getAppState();
+  //_onChange = this._onChange.bind(this);
+  
   
   
 	// addUserDetails = (userDetailsFromResponse) => {
 	// 	this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
 	// }
 
-  componentDidMount() {    
+  componentDidMount = () => {    
     console.log("component did mount called ");
     GetUserDetailsStore.addChangeListener(this._onChange);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
      console.log("component will un mount called ");
     GetUserDetailsStore.removeChangeListener(this._onChange);
   }
 
-  _onChange() {  
+  _onChange = () => {  
   console.log("On change called");   
     this.setState(getAppState());
   }
 
   render () {
     return (
-      <div>       
-        <Form />
-        <UserList allDetails= {this.state.userDetails} />
+      <div>  
+                <div>
+        <p align="center">
+          This is a simple form to retrieve user data from the unauthenticated endpoint from git.<br/>
+          The retrieved data is not stored in the database but just fetched from the "stores" in flux to be displayed 
+          in the view.
+        </p>    
+      </div>
+        <Form />      
+        <UserList allDetails={this.state.userDetails}/>                  
       </div>
     );
   }

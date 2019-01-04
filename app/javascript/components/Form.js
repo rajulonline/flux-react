@@ -25,7 +25,7 @@ class Form extends React.Component {
     return (      
         <form onSubmit={this.handleSubmit}>
         	<input type="text" placeholder="Enter the username" name="user[name]" value={this.state.userName} onChange={this.handleChange} />
-        	<input type="submit" value="Submit" />
+        	<input type="submit" className="waves-effect waves-light btn" value="Submit" />
         </form>
     );
   }
