@@ -25,7 +25,11 @@ class Form extends React.Component {
     return (      
         <form onSubmit={this.handleSubmit}>
         	<input type="text" placeholder="Enter the username" name="user[name]" value={this.state.userName} onChange={this.handleChange} />
+<<<<<<< HEAD
         	<input type="submit" className="waves-effect waves-light btn" value="Submit" />
+=======
+        	<input type="submit" value="Submit" />
+>>>>>>> 26b013e6f66171190879cf730c2b688d494fd929
         </form>
     );
   }
