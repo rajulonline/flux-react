@@ -1,17 +1,23 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import ReactDOM from 'react-dom';
-import Form from './Form.js';
-import UserList from './UserList.js';
+
+const Form = React.lazy(() => import('./Form.js'));
+const UserList = React.lazy(() => import('./UserList.js'));
+
 import GetUserDetailsStore from "../stores/GetUserDetailsStore.jsx";
+import ErrorBoundaryComponent from "./ErrorBoundaryComponent.js";
+
 
 let getAppState = () => {  
   return { userDetails: GetUserDetailsStore.getAll() };
 }
 
+
 class App extends React.Component {
 
   // constructor(props){
   //   super(props);
+
   state = getAppState();
   //_onChange = this._onChange.bind(this);
  
@@ -19,6 +25,8 @@ class App extends React.Component {
 	// 	this.setState({userDetails: this.state.userDetails.concat(userDetailsFromResponse)})
 	// }
 
+
+  
 
   componentDidMount = () => {    
     console.log("component did mount called ");
@@ -48,12 +56,17 @@ class App extends React.Component {
           in the view.
         </p>    
       </div>
-        <Form />      
-        <UserList allDetails={this.state.userDetails} />
+        <ErrorBoundaryComponent>
+          <Suspense fallback={<div>Loading...</div>}>
+            <section>
+              <Form /> 
+              <UserList allDetails={this.state.userDetails} />     
+            </section>
+          </Suspense>        
+        </ErrorBoundaryComponent>
       </div>
     );
   }
 }
-
 
 export default App;

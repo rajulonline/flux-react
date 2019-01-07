@@ -6,8 +6,8 @@ class UserList extends React.Component {
 		render() {
 		return(
 			<div>
-			{this.props.allDetails.map(user=><User {...user} key={user.id}/>)}
-		</div>
+				{this.props.allDetails.map(user=><User {...user} key={user.id}/>)}
+			</div>
 
 			);
 	}
